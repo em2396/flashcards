@@ -1,4 +1,5 @@
 const data = require('./data');
+const index = require('./index');
 const prototypeQuestions = data.prototypeData;
 const util = require('./util');
 
