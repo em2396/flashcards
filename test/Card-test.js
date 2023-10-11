@@ -17,3 +17,5 @@ describe('card', function() {
     expect(card.correctAnswer).to.equal('find()');
   });  
 });
+
+//Add a test for the countCards function
