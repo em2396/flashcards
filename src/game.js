@@ -1,3 +1,5 @@
+const { createCard, countCards, deck } = require('./card');
+const { createRound } = require('./index');
 const data = require('./data');
 const index = require('./index');
 const prototypeQuestions = data.prototypeData;
@@ -12,4 +14,22 @@ function printQuestion(round) {
   util.main(round);
 }
 
-module.exports = { printMessage, printQuestion };
+function start() {
+  const currentNewGameDeck = [];
+  while (currentNewGameDeck.length < 3) {
+    const randomCardIndex = Math.floor(Math.random() * deck.length);
+    const randomCardToPush = deck[randomCardIndex];
+    if (!currentNewGameDeck.includes(randomCardToPush)) {
+      currentNewGameDeck.push(randomCardToPush); 
+    }
+  }
+  let gamePlay = createRound(currentNewGameDeck);
+  printMessage(currentNewGameDeck);
+  printQuestion(gamePlay);
+  console.log(printMessage(currentNewGameDeck));
+  return gamePlay;
+}
+
+start();
+
+module.exports = { printMessage, printQuestion,};
