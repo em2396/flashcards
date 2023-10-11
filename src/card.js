@@ -1,7 +1,7 @@
 const { prototype } = require("mocha");
 const { prototypeData } = require("./data");
 
-function createCard(index) {
+const createCard = index => {
     if (index <= 30) {
         return prototypeData[index];
     } else {
@@ -41,17 +41,9 @@ const card28 = createCard(27);
 const card29 = createCard(28);
 const card30 = createCard(29);
 
-// const cardsData = prototypeData.map(element => {
-//     return createCard(
-//         element.id,
-//         element.question,
-//         element.answers,
-//         element.correctAnswer
-//     );
-// });
+const deck = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30];
 
+const countCards = currentDeck => currentDeck.length;
+// console.log(countCards(deck)); // returns 30
 
-
-
-
-module.exports = { createCard }
+module.exports = { createCard, countCards, deck }
