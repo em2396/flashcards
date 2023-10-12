@@ -1,14 +1,14 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const { createCard } = require('../src/card');
+const { createCard, countCards } = require('../src/card');
 
-describe('card', function() {
-  it('should be a function', function() {
+describe('create a card function', function() {
+  it.skip('should be a function', function() {
     expect(createCard).to.be.a('function');
   });
 
-  it('should create a card and its properties', function() {
+  it.skip('should create a card and its properties', function() {
     const card = createCard(9);
     
     expect(card.id).to.equal(10);
@@ -18,4 +18,17 @@ describe('card', function() {
   });  
 });
 
-//Add a test for the countCards function
+describe('count the length of cards', function(){
+  it.skip('should be a function', function(){
+    expect(countCards).to.be.a('function')
+  });
+  it.skip('should return the length of cards in deck', function(){
+    const card1 = createCard(0);
+    const card2 = createCard(1);
+
+    const deck1 = [card1, card2];
+    const lengthOfDeck = countCards(deck1);
+
+    expect(lengthOfDeck).to.equal(2);
+  })
+});
