@@ -1,4 +1,4 @@
-const { createCard, countCards, deck } = require('./card');
+const { countCards, deck } = require('./card');
 const { createRound } = require('./index');
 const data = require('./data');
 const index = require('./index')
@@ -32,4 +32,4 @@ function start() {
 
 start();
 
-module.exports = { printMessage, printQuestion};
+module.exports = { printMessage, printQuestion, start};
