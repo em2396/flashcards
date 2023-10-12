@@ -1,9 +1,10 @@
 const { createCard, countCards, deck } = require('./card');
 const { createRound } = require('./index');
 const data = require('./data');
-const index = require('./index');
+const index = require('./index')
 const prototypeQuestions = data.prototypeData;
 const util = require('./util');
+
 
 function printMessage(deck) {
   console.log(`Welcome to FlashCards! You are playing with ${countCards(deck)} cards.
@@ -26,10 +27,9 @@ function start() {
   let gamePlay = createRound(currentNewGameDeck);
   printMessage(currentNewGameDeck);
   printQuestion(gamePlay);
-  console.log(printMessage(currentNewGameDeck));
   return gamePlay;
 }
 
 start();
 
-module.exports = { printMessage, printQuestion,};
+module.exports = { printMessage, printQuestion};

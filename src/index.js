@@ -1,36 +1,42 @@
-const { createCard } = require('../src/card');
 var percentageCorrect; 
-var currentIndex = 0;
 
-const evaluateGuess = (guess, cardObject) => {
-    if (guess === cardObject.cardAnswer) {
-        return 'Correct!';
-    } else {
-        return 'Incorrect!';
-    }
-};
+// const evaluateGuess = (guess, cardObject) => {
+//     if (guess === cardObject.cardAnswer) {
+//         return 'Correct!';
+//     } else {
+//         return 'Incorrect!';
+//     }
+// };
 
 const createRound = currentDeck => {
-    return {
+    const newObj = {
         deck: currentDeck, 
-        currentCard: currentDeck[currentIndex], 
+        currentCard: currentDeck[0],
         incorrectGuesses: 0, //increment
         incorrectGuessId: [],
         turns: 0 //increment
     }
+   // console.log(newObj.currentCard);
+    return newObj;
 };
 
 const takeTurn = (guess, roundObj) => {
-    roundObj.turns++;
-    if (guess === roundObj.currentCard.correctAnswer) {
-        console.log('Correct!');
-    } else {
-        roundObj.incorrectGuesses++;
-        roundObj.incorrectGuessId.push(currentCard.id);
-        console.log('Incorrect!');
+    if (roundObj.turns < roundObj.deck.length -1 && guess === roundObj.currentCard.correctAnswer ) {
+        roundObj.turns++;
+        roundObj.currentCard = roundObj.deck[roundObj.turns];
+        return 'Correct!';
     }
-    currentIndex++;
-    return roundObj;
+    else if (roundObj.turns < roundObj.deck.length -1 && guess !== roundObj.currentCard.correctAnswer) {
+        roundObj.incorrectGuesses++;
+        roundObj.incorrectGuessId.push(roundObj.currentCard.id);
+        roundObj.turns++;
+        roundObj.currentCard = roundObj.deck[roundObj.turns];
+        return 'Incorrect!';
+    } else if (guess === roundObj.currentCard.correctAnswer) {
+        return 'Correct!';
+    } else {
+        return 'Incorrect!';
+    }
 };
 
 const calculatePercentCorrect = roundObj => {
@@ -39,15 +45,15 @@ const calculatePercentCorrect = roundObj => {
 }; //need to update this so it's a percentage not a decimal.
 
 const endRound = roundObj => {
-    if (roundObj.turns === currentDeck.length) {
-        console.log(`Round over! You answered ${percentageCorrect} of the questions correctly!`);
+    if (roundObj.turns === roundObj.deck.length) {
+        return `Round over! You answered ${percentageCorrect} of the questions correctly!`;
     }
 };
 
 module.exports = { 
-    evaluateGuess,
     createRound,
     takeTurn,
     calculatePercentCorrect, 
-    endRound
+    endRound, 
+    //evaluateGuess
  }
